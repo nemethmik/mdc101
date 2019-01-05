@@ -7,7 +7,10 @@ import React, {FunctionComponent, useState, useEffect} from "react"
 import {MDCRipple} from "@material/ripple"
 import "@material/button/dist/mdc.button.min.css"
 type AppProps = {initial?: number}
-const App: FunctionComponent<AppProps> = ({ initial = 19 }) => {
+// const App: FunctionComponent<AppProps> = ({ initial = 19 }) => {
+// <button onClick={() => setClicks(clicks + 1)} 
+function App({ initial = 19 }:{initial?: number}) {
+//const App: React.SFC<AppProps> = ({ initial = 19 }) => {
   const [clicks, setClicks] = useState(initial);
   useEffect(() => {
     //MDCRipple.attachTo(document.querySelector(".mdc-button"))
@@ -17,7 +20,7 @@ const App: FunctionComponent<AppProps> = ({ initial = 19 }) => {
     for (const button of buttons) {MDCRipple.attachTo(button)}
   },[]) //This empty array is important to let the effect executed only once 
   return (
-    <button onClick={() => setClicks(clicks + 1)} 
+    <button onClick={function(){setClicks(clicks + 1)}} 
       className="mdc-button">Clicked {clicks}</button>
   )
 }
