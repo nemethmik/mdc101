@@ -6,3 +6,11 @@ I'll initialize the project with **npx create-react-app . --typescript** (CRA)
 Then I'll try to make the tutorials both with and without SASS. I'm not sure, if SASS can be used with a CRA project. SASS is the recommended way of [using MDC Web](https://github.com/material-components/material-components-web/blob/master/docs/getting-started.md#using-mdc-web-with-sass-and-es2015)
 
 ## Branch MDC101 Project Initialized with CRA TypeScript (mdc10110cra)
+
+## Branch MDC101 MDC Quick Start (mdc10111mdcwebadded)
+The [Quick Start](https://github.com/material-components/material-components-web/blob/master/docs/getting-started.md#quick-start-cdn) way of using MDC Web may work, too; but [Local Installation](https://github.com/material-components/material-components-web/blob/master/docs/getting-started.md#installing-locally) is the easy way to work directly with MDC Web with React.
+- **npm install material-components-web** This is only needed when we want to use the latest version of MDC Web, since MDC React is always wapped around a version behind the actual MDC Web version.
+- **npm install @material/react-button** However, using MDC React is a lot/bit more convenient when MDC JavaScript functions (ripple, for example) is to be used. Installing react-button will automatically installs react-ripple, too.
+- **npm install react@16.7.0-alpha.2 react-dom@16.7.0-alpha.2** to avoid "TypeError: Object(...) is not a function" since 16.7.0 doesn't have hooks enabled. 
+The [mdc-web-quick-start-demo application on stackblitz](https://stackblitz.com/edit/mdc-web-quick-start-demo?file=index.js) was of a great help.
+
