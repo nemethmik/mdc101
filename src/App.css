@@ -4,12 +4,12 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 10vmin;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /*background-color: #282c34;
+  min-height: 100vh;*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,4 +29,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+.username,
+.password {
+  display: block;
+  width: 300px;
+  margin: 20px auto;
+}
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 300px;
+  margin: auto;
+}
+.button-container button {
+  margin: 3px;
 }

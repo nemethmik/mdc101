@@ -12,3 +12,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.header {
+  text-align: center;
+}
+
+.shrine-logo {
+  width: 150px;
+  height: 150px;
+  padding-top: 10px; /* Original was 80px */
+  fill: currentColor;
+}
