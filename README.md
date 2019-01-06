@@ -7,3 +7,6 @@ Then I'll try to make the tutorials both with and without SASS. I'm not sure, if
 
 ## Branch mdcweb101 and Accompanying Video 
 Here is an [accompanying video](https://youtu.be/eP_3lxGV6EE) where I explain my approach of adapting MDC Web directly in React Hook/TypeScript projects.
+
+## Branch mdcweb101setup for Login
+This branch was a preparation for the video mdcweb101login 
