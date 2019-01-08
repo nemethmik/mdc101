@@ -9,7 +9,7 @@ Then I'll try to make the tutorials both with and without SASS. I'm not sure, if
 This is a branch directly from the empty master root for [MDC111](https://codelabs.developers.google.com/codelabs/mdc-111-web) from the Google MDC Web codelab series.
 CRA a projects a perfectly fine for SASS, just node-sass, rename the css files to scss where you want to use SASS syntax, and set SASS_PATH to node_modules.
 - **npx create-react-app . --typescript**
-- **npm install react@16.7.0-alpha.2 react-dom@16.7.0-alpha.2** for React Hooks
+- **npm install react@next react-dom@next** for React Hooks 16.7.0-alpha.2
 - **npm install node-sass**
 - **set SASS_PATH=.\node_modules**
 - **npm install material-components-web** for MDC Web
