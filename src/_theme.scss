@@ -1,12 +1,18 @@
 @import "./variables";
-
+/*
 .crane-button {
   background-color: $crane-primary-color;
   color: #fff;
   border: 0;
   padding: 12px;
 }
+*/
+$mdc-theme-primary: $crane-primary-color;
+@import "@material/button/mdc-button";
+@import "@material/select/mdc-select";
+@import "@material/textfield/mdc-text-field";
 
+/*
 .crane-label {
   order: -1;
   text-transform: uppercase;
@@ -22,3 +28,4 @@
   padding: 12px;
   font-size: 1.1rem;
 }
+*/

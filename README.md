@@ -8,11 +8,11 @@ Then I'll try to make the tutorials both with and without SASS. I'm not sure, if
 ## MDC111
 ### Initialization with CRA/TypeScript, SASS, React Hooks and MDC Web
 This is a branch directly from the empty master root for [MDC111](https://codelabs.developers.google.com/codelabs/mdc-111-web) from the Google MDC Web codelab series.
-CRA a projects a perfectly fine for SASS, just node-sass, rename the css files to scss where you want to use SASS syntax, and set SASS_PATH to node_modules.
+CRA a projects a perfectly fine for SASS, just node-sass, rename the css files to scss where you want to use SASS syntax, and add .env with SASS_PATH to node_modules.
 - **npx create-react-app . --typescript**
 - **npm install react@next react-dom@next** for React Hooks 16.7.0-alpha.2
 - **npm install node-sass**
-- **set SASS_PATH=.\node_modules**
+- Add **.env** with **SASS_PATH=./node_modules**
 - **npm install material-components-web** for MDC Web
 
 ### Copying Startup Files from Original MDC111
@@ -163,3 +163,79 @@ CRA a projects a perfectly fine for SASS, just node-sass, rename the css files t
 This series of steps is a perfect scenario how to initialize a CRA/TypeScrip/React Hook project for MDC Web/SASS.
 After this series of steps you will have a clean excellent starting point for any applications.
 So far so good and I love this project. 
+
+### Update the Button
+- At the top of **_theme.scss**, delete the .crane-button { ... } block, 
+and add the following in its place:
+```
+$mdc-theme-primary: $crane-primary-color;
+@import "@material/button/mdc-button";
+```
+Note, that **mdc-button is an SCSS** file and is imported into the application-specific _theme.scss, _theme.scss is imported into app.scss, which is imported into App.tsx. The CSS class names in the SCSS and TSX files must match, otherwise, we will not get any errors, the application simply is not working as expected.  
+
+- In **index.html**, remove the crane-button class from the &lt;button> element, and add the **mdc-button mdc-button--raised** classes:
+```
+<button type="submit" class="mdc-button mdc-button--raised">Save</button>
+```
+- Import MDCRipple into App.tsx with a ts-ignore, since MDC Web has no TypeScript definitions, but it is [planned in 2019 Q1](https://github.com/material-components/material-components-web/issues/4225)
+```
+//@ts-ignore
+import {MDCRipple} from '@material/ripple'
+```
+To instantiate the ripple on the button, add an effect hook to the App component:
+```
+  React.useEffect(function(){new MDCRipple(document.querySelector('.mdc-button'))},[])
+```
+- Add Roboto fonts to index.html: &lt;link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+
+### Update the Select Element
+- Add @import "@material/select/mdc-select"; to **_theme.scss**
+- Locate the select element in **index.html** Replace the crane-input class with **mdc-select__native-control**
+- Just below the closing select tag, replace the crane-label class with **mdc-floating-label**
+- Then add the following markup immediately after the label:```<div className="mdc-line-ripple"/>```
+- Finally, add the following tags around the select, label and line-ripple elements (but inside the crane-field element):```<div className="mdc-select"> ... </div>```
+The result should look like so:
+```
+<div class="crane-field">
+  <div class="mdc-select">
+    <select class="mdc-select__native-control" id="crane-state-input" required>
+      <option value="" selected></option>
+      <option value="AL">Alabama</option>
+      ...
+      <option value="WY">Wyoming</option>
+    </select>
+    <label class="mdc-floating-label" for="crane-state-input">
+      State
+    </label>
+    <div class="mdc-line-ripple"></div>
+  </div>
+</div>
+```
+- **import {MDCSelect} from '@material/select'** with @ts-ignore in App.tsx; to instantiate the select, add **new MDCSelect(document.querySelector('.mdc-select'))** to the effect hook.
+
+### Update the Text Fields
+- **@import "@material/textfield/mdc-text-field"** in _theme.scss
+- In App.tsx, locate the input element for the "Name" field. Replace the crane-input class with **mdc-text-field__input**
+- Next, replace the crane-label class with **mdc-floating-label**
+- Then add the following markup immediately after the label:```<div className="mdc-line-ripple"/>```
+- Finally, wrap all 3 elements with the following:```<div className="mdc-text-field"> ... </div>```
+- The resulting markup should look like this:
+```
+<div className="crane-field">
+  <div className="mdc-text-field">
+    <input className="mdc-text-field__input" id="crane-name-input"
+           type="text" required autoFocus>
+    <label className="mdc-floating-label" htmlFor="crane-name-input">
+      Name
+    </label>
+    <div className="mdc-line-ripple"></div>
+  </div>
+</div>
+```
+- Repeat the same procedure for all other input elements on the page.
+- You can now remove the **.crane-label** and **.crane-input** styles from _theme.scss, which are no longer used.
+
+- Add **"downlevelIteration": true,** to tsconfig to support **for-of** syntax; and restart the server (VERY IMPORTANT!) 
+- **import {MDCTextField} from '@material/textfield'** to App.tsx;
+To instantiate the text fields, add the following to the effect hook:
+```for(const tf of document.querySelectorAll('.mdc-text-field')) new MDCTextField(tf)```
